@@ -54,33 +54,13 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  const { data: { session } } = await supabase.auth.getSession()
-
-  // Redirect unauthenticated users to login if they try to access protected routes
-  if (!session && (
-    request.nextUrl.pathname.startsWith('/inicio') ||
-    request.nextUrl.pathname.startsWith('/chat') ||
-    request.nextUrl.pathname.startsWith('/perfil') ||
-    request.nextUrl.pathname.startsWith('/muro') ||
-    request.nextUrl.pathname.startsWith('/diario') ||
-    request.nextUrl.pathname.startsWith('/conexiones')
-  )) {
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
+  await supabase.auth.getSession()
 
   return response
 }
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public (public folder)
-     * - auth (auth callback routes)
-     */
     '/((?!_next/static|_next/image|favicon.ico|public|auth).*)',
   ],
 }
