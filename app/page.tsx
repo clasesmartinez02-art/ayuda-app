@@ -186,7 +186,7 @@ export default function OnboardingPage() {
               <img src="/logo.png" alt="Logo" className="w-32 h-32 rounded-3xl shadow-2xl" />
             </motion.div>
             <motion.h1 initial={{ letterSpacing: '0.8em', opacity: 0 }} animate={{ letterSpacing: '0.2em', opacity: 1 }} transition={{ duration: 2, delay: 0.5 }} className="text-4xl md:text-5xl font-light text-foreground tracking-widest">
-              SIN JUICIO
+              AYUDA
             </motion.h1>
             <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 0.7, y: 0 }} transition={{ duration: 1.5, delay: 1.5 }} className="text-muted-foreground text-lg italic">
               Aquí nadie te juzga.
