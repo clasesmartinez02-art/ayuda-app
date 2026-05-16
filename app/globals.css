@@ -1,0 +1,473 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* SIN JUICIO - Cinematographic Dark Theme */
+  --background: oklch(0.08 0.015 270);
+  --foreground: oklch(0.93 0.01 270);
+  --card: oklch(0.12 0.02 270);
+  --card-foreground: oklch(0.93 0.01 270);
+  --popover: oklch(0.1 0.018 270);
+  --popover-foreground: oklch(0.93 0.01 270);
+  --primary: oklch(0.65 0.2 270);
+  --primary-foreground: oklch(0.98 0.005 270);
+  --secondary: oklch(0.18 0.025 270);
+  --secondary-foreground: oklch(0.9 0.01 270);
+  --muted: oklch(0.2 0.02 270);
+  --muted-foreground: oklch(0.65 0.02 270);
+  --accent: oklch(0.55 0.18 300);
+  --accent-foreground: oklch(0.98 0.005 270);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0.005 270);
+  --border: oklch(0.25 0.025 270);
+  --input: oklch(0.15 0.02 270);
+  --ring: oklch(0.65 0.2 270);
+  
+  /* Custom emotional colors */
+  --calm: oklch(0.6 0.15 220);
+  --warm: oklch(0.7 0.15 70);
+  --hope: oklch(0.65 0.18 150);
+  --sadness: oklch(0.5 0.12 250);
+  --anxiety: oklch(0.6 0.15 30);
+  --anger: oklch(0.55 0.2 25);
+  --loneliness: oklch(0.45 0.1 280);
+  --peace: oklch(0.7 0.1 200);
+  
+  /* Emergency warm colors */
+  --emergency-bg: oklch(0.1 0.02 30);
+  --emergency-accent: oklch(0.7 0.12 60);
+  
+  --radius: 0.75rem;
+  
+  /* Chart colors */
+  --chart-1: oklch(0.65 0.2 270);
+  --chart-2: oklch(0.6 0.15 220);
+  --chart-3: oklch(0.55 0.18 300);
+  --chart-4: oklch(0.7 0.15 70);
+  --chart-5: oklch(0.65 0.18 150);
+  
+  /* Sidebar */
+  --sidebar: oklch(0.1 0.018 270);
+  --sidebar-foreground: oklch(0.93 0.01 270);
+  --sidebar-primary: oklch(0.65 0.2 270);
+  --sidebar-primary-foreground: oklch(0.98 0.005 270);
+  --sidebar-accent: oklch(0.18 0.025 270);
+  --sidebar-accent-foreground: oklch(0.9 0.01 270);
+  --sidebar-border: oklch(0.25 0.025 270);
+  --sidebar-ring: oklch(0.65 0.2 270);
+}
+
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  
+  /* Emotional colors */
+  --color-calm: var(--calm);
+  --color-warm: var(--warm);
+  --color-hope: var(--hope);
+  --color-sadness: var(--sadness);
+  --color-anxiety: var(--anxiety);
+  --color-anger: var(--anger);
+  --color-loneliness: var(--loneliness);
+  --color-peace: var(--peace);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* App-like behavior */
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+    overflow-x: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Re-enable selection for inputs and text */
+  input, textarea, [contenteditable="true"], .selectable {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Prevent overscroll bounce on iOS */
+    overscroll-behavior: none;
+    height: 100%;
+  }
+}
+
+/* Handle notches and safe areas */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.safe-px {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* ===================== ANIMATIONS ===================== */
+
+/* Rain animation */
+@keyframes rain {
+  0% {
+    transform: translateY(-100vh) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(100vh) translateX(20px);
+    opacity: 0;
+  }
+}
+
+.rain-drop {
+  animation: rain linear infinite;
+}
+
+/* Breathing animation */
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Guided breathing - inhale/hold/exhale */
+@keyframes breathe-guided {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  /* Inhale 0-28.5% (4s of 14s) */
+  28.5% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  /* Hold 28.5%-78.5% (7s of 14s) */
+  78.5% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+  /* Exhale 78.5%-100% (3s of 14s) */
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+}
+
+.animate-breathe-guided {
+  animation: breathe-guided 14s ease-in-out infinite;
+}
+
+/* Box breathing (4-4-4-4) */
+@keyframes breathe-box {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  25% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+  75% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+}
+
+.animate-breathe-box {
+  animation: breathe-box 16s ease-in-out infinite;
+}
+
+/* Floating particles */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-5px);
+  }
+  75% {
+    transform: translateY(-25px) translateX(5px);
+  }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Gradient animation */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px 0 oklch(0.65 0.2 270 / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px 10px oklch(0.65 0.2 270 / 0.5);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Emergency pulse glow - warm */
+@keyframes pulse-glow-warm {
+  0%, 100% {
+    box-shadow: 0 0 20px 0 oklch(0.7 0.12 60 / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px 10px oklch(0.7 0.12 60 / 0.5);
+  }
+}
+
+.animate-pulse-glow-warm {
+  animation: pulse-glow-warm 3s ease-in-out infinite;
+}
+
+/* Fade in up */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* Fade in */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+}
+
+/* Slow fade in - for cinematic text */
+@keyframes fade-in-slow {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-slow {
+  animation: fade-in-slow 2s ease-out forwards;
+}
+
+/* Star twinkle */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.3);
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle ease-in-out infinite;
+}
+
+/* Typing dots */
+@keyframes typing-dot {
+  0%, 60%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-4px);
+  }
+}
+
+.animate-typing-dot {
+  animation: typing-dot 1.4s ease-in-out infinite;
+}
+
+/* Letter spacing reveal */
+@keyframes letter-spacing-reveal {
+  from {
+    letter-spacing: 0.5em;
+    opacity: 0;
+  }
+  to {
+    letter-spacing: 0.2em;
+    opacity: 1;
+  }
+}
+
+.animate-letter-reveal {
+  animation: letter-spacing-reveal 2s ease-out forwards;
+}
+
+/* Gentle sway */
+@keyframes sway {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+}
+
+.animate-sway {
+  animation: sway 6s ease-in-out infinite;
+}
+
+/* Scale in */
+@keyframes scale-in {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s ease-out forwards;
+}
+
+/* ===================== SCROLLBAR ===================== */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(0.1 0.015 270);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0.025 270);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.4 0.03 270);
+}
+
+/* Selection */
+::selection {
+  background: oklch(0.65 0.2 270 / 0.3);
+  color: oklch(0.98 0.005 270);
+}
+
+/* ===================== UTILITIES ===================== */
+
+/* Glass morphism */
+.glass {
+  background: oklch(0.12 0.02 270 / 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid oklch(0.25 0.025 270 / 0.3);
+}
+
+.glass-strong {
+  background: oklch(0.12 0.02 270 / 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid oklch(0.25 0.025 270 / 0.5);
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, oklch(0.65 0.2 270), oklch(0.55 0.18 300));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-warm {
+  background: linear-gradient(135deg, oklch(0.7 0.15 70), oklch(0.7 0.12 60));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
